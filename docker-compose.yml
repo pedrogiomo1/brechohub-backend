@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+
+    mysql:
+        container_name: 'reusehub-mysql'
+        image: mysql:5.7
+        volumes:
+            - ./data/mysql:/var/lib/mysql
+        restart: always
+        ports:
+            - '3306:3306'
+        environment:
+            MYSQL_DATABASE: 'reusehub'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+            MYSQL_ROOT_PASSWORD: ""
+        networks:
+            - app-network
+
+#    postgres:
+#        container_name: 'reusehub-postgres'
+#        image: postgres
+#        restart: always
+#        shm_size: 128mb
+#        ports:
+#            - "5432:5432"
+#        volumes:
+#            - ./data/postgres:/var/lib/postgres
+#        environment:
+#            POSTGRES_DB: reusehub
+#            POSTGRES_USER: postgres
+#            POSTGRES_PASSWORD: pgreusehub
+
+    php:
+        container_name: 'reusehub-php'
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./application:/var/www
+        networks:
+            - app-network
+        depends_on:
+            - mysql
+
+    nginx:
+        container_name: 'reusehub-nginx'
+        image: nginx:latest
+        volumes:
+            - ./application:/var/www
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        ports:
+            - 8080:80
+        depends_on:
+            - php
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
