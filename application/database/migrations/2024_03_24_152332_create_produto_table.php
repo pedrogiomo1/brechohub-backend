@@ -18,11 +18,13 @@ return new class extends Migration
             $table->foreignId('fornecedor_id')->references('id')->on('fornecedor')->onDelete('cascade');
             $table->string('codigo',20)->nullable();
             $table->string('descricao',200)->nullable();
-            $table->decimal('preco_venda')->default(0);
-            $table->decimal('taxa_loja')->default(0);
-            $table->decimal('valor_fornecedor')->default(0);
+            $table->decimal('preco_venda',16,2)->default(0);
+            $table->smallInteger('tipo_comissao')->default(1);
+            $table->decimal('comissao',16,2)->default(0);
+            $table->decimal('valor_fornecedor',16,2)->default(0);
             $table->smallInteger('status')->default(1);
             $table->string('imagem')->nullable();
+            $table->text('observ')->nullable();
             $table->timestamps();
         });
     }

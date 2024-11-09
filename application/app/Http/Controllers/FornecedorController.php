@@ -25,7 +25,7 @@ class FornecedorController extends Controller
     {
         $data = $request->all();
 
-        $fornecedor = new Fornecedor();
+        $fornecedor = new Fornecedor($data);
 
         DB::transaction(function () use ($fornecedor, $data) {
             $pessoa = PessoaService::create($data);

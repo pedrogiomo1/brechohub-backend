@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::apiResource('empresa', \App\Http\Controllers\EmpresaController::class);
+Route::apiResource('banco', \App\Http\Controllers\BancoController::class)->only('index', 'show');
 
 Route::middleware([\Stancl\Tenancy\Middleware\InitializeTenancyByRequestData::class])->group(function () {
 
@@ -16,5 +17,6 @@ Route::middleware([\Stancl\Tenancy\Middleware\InitializeTenancyByRequestData::cl
     Route::apiResource('produtofoto', \App\Http\Controllers\ProdutoFotoController::class)->only('store', 'destroy');
     Route::apiResource('grade', \App\Http\Controllers\GradeController::class);
     Route::apiResource('gradeitem', \App\Http\Controllers\GradeItemController::class)->only('store', 'update', 'destroy');
+    Route::apiResource('conta', \App\Http\Controllers\ContaController::class, ['parameters' => ['conta' => 'conta']])->except('index');
 
 });

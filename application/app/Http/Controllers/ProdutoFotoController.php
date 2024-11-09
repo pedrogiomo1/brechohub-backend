@@ -2,48 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdutoFotoRequest;
 use App\Models\ProdutoFoto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProdutoFotoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function store(ProdutoFotoRequest $request)
     {
-        //
+        $data = $request->all();
+
+        $data['arquivo'] = $request->file('arquivo_upload')->store('produtos');
+
+        $produtoFoto = ProdutoFoto::create($data);
+
+        return  response()->json($produtoFoto, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function destroy(ProdutoFoto $produtofoto)
     {
-        //
+        if ($produtofoto->arquivo)Storage::delete($produtofoto->arquivo);
+
+        $produtofoto->delete();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProdutoFoto $produtoFoto)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ProdutoFoto $produtoFoto)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ProdutoFoto $produtoFoto)
-    {
-        //
-    }
 }

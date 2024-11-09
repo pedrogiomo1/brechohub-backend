@@ -20,8 +20,9 @@ class ProdutoRequest extends FormRequest
             "descricao"                => "required|string",
             "categoria_id"             => "required|integer|exists:categoria,id",
             "fornecedor_id"            => "required|integer|exists:fornecedor,id",
-            "preco_venda"              => "required|integer|exists:fornecedor,id",
-            "taxa_loja"                => "nullable",
+            "preco_venda"              => "required",
+            "tipo_comissao"            => "nullable",
+            "comissao"                 => "nullable",
             "valor_fornecedor"         => "nullable",
             "status"                   => "nullable",
         ];

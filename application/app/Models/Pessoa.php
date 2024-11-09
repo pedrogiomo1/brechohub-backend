@@ -54,4 +54,9 @@ class Pessoa extends Model
         return $this->hasOne(Usuario::class, 'pessoa_id', 'id');
     }
 
+    public function conta()
+    {
+        return $this->hasMany(Conta::class, 'pessoa_id', 'id');
+    }
+
 }

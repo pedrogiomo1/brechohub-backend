@@ -3,21 +3,29 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 
-class Cliente extends Model
+class Conta extends Model
 {
-    use BelongsToTenant;
-
-    protected $table = 'cliente';
+    protected $table = 'conta';
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'pessoa_id',
-        'empresa_id',
+        'banco_id',
+        'tipo_conta',
+        'agencia',
+        'conta',
+        'digito',
+        'titular',
+        'chave_pix_tipo',
+        'chave_pix',
+        'ativo',
     ];
 
     public function pessoa()
     {
         return $this->belongsTo(Pessoa::class, 'pessoa_id', 'id');
     }
+
+
 }

@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('tenant_id')->foreign('tenant_id')->references('id')->on('tenants');
             $table->foreignId('pessoa_id')->references('id')->on('pessoa')->onDelete('cascade');
+            $table->boolean('ativo')->default(true);
+            $table->smallInteger('tipo_comissao')->default(1);
+            $table->decimal('comissao',16,2)->default(0);
+            $table->text('observ')->nullable();
             $table->timestamps();
         });
     }

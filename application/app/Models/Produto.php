@@ -19,9 +19,11 @@ class Produto extends Model
         'codigo',
         'descricao',
         'preco_venda',
-        'taxa_loja',
+        'tipo_comissao',
+        'comissao',
         'valor_fornecedor',
         'status',
         'imagem',
+        'observ',
     ];
 }

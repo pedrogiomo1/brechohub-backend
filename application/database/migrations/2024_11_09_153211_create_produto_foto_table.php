@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pessoa', function (Blueprint $table) {
+        Schema::create('produto_foto', function (Blueprint $table) {
             $table->id();
-            $table->string('nome',200)->nullable();
-            $table->string('email',100)->nullable();
-            $table->string('tipo_pessoa',1)->default('F');
+            $table->foreignId('produto_id')->references('id')->on('produto');
+            $table->string('arquivo');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pessoa');
+        Schema::dropIfExists('produto_foto');
     }
 };
