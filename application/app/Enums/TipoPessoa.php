@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum TipoPessoa: string {
+enum Tipoperson: string {
     case FISICA = 'física';
     case JURIDICA = 'jurídica';
 

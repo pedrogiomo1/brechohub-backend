@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('natural_person', function (Blueprint $table) {
             $table->id();
-            $table->string('tenant_id')->foreign('tenant_id')->references('id')->on('tenants');
             $table->foreignId('person_id')->references('id')->on('person')->onDelete('cascade');
-            $table->timestamps();
+            $table->string('cpf', 11)->nullable();
+            $table->date('birthdate')->nullable();
+            $table->string('rg',40)->nullable();
+            $table->string('rg_issuer',40)->nullable();
+            $table->date('rg_date')->nullable();
         });
     }
 
@@ -24,6 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('natural_person');
     }
+
 };

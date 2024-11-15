@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('config', function (Blueprint $table) {
+        Schema::create('person', function (Blueprint $table) {
             $table->id();
-            $table->string('tenant_id')->foreign('tenant_id')->references('id')->on('tenants');
-            $table->foreignId('company_id')->references('id')->on('company')->onDelete('cascade');
+            $table->string('name',200)->nullable();
+            $table->string('email',100)->nullable();
+            $table->string('person_type',1)->default('F');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('config');
+        Schema::dropIfExists('person');
     }
 };

@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum TipoConta: string {
+enum Tipoaccount_number: string {
     case CORRENTE = 'corrente';
     case POUPANCA = 'poupança';
 }
