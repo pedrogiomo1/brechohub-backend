@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('bank', function (Blueprint $table) {
             $table->id();
             $table->smallInteger('code');
-            $table->string('nome', 100);
-            $table->string('imagem', 100);
+            $table->string('name', 100);
+            $table->string('image', 100);
         });
     }
 

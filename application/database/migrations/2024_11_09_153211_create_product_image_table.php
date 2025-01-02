@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('produto_foto', function (Blueprint $table) {
+        Schema::create('product_image', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('produto_id')->references('id')->on('produto');
-            $table->string('arquivo');
+            $table->foreignId('product_id')->references('id')->on('product');
+            $table->string('file');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('produto_foto');
+        Schema::dropIfExists('product_image');
     }
 };
